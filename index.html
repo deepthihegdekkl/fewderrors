@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>weather app</title>
+    <title>Weather App</title>
     <style>
         body{
-            background-color: aqua;
-            text-align: center;
-            font-size: larger;
+            background-color: blanchedalmond;
         }
     </style>
 </head>
 <body>
-    <div class="app">
-        <h1>weather app</h1>
-        <input type="text" id="cityInput" placeholder="enter a city name">
-        <button id="fetchWeatherButton">Get Weather</button>
-        <div id="weatherResult"></div>
-    </div>
+    <h1>Weather Checker</h1>
+    <label>Enter city name : </label>
+    <input type="text" id="input" required>
+    <br>
+    <button id="btn">Submit</button>
+    <div id="output"></div>
     <script src="script.js"></script>
-    
 </body>
 </html>
