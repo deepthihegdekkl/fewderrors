@@ -1,36 +1,26 @@
-document.addEventListener("DOMContentLoaded",function(){
-    const apiKey="b1693ed7ad181ad79817cc99d0523aa3";
-    const fetchWeatherButton=document.getElementById("fetchWeatherButton");
-    const cityInput=document.getElementById("cityInput");
-    const weatherResult=document.getElementById("weatherResult");
-    fetchWeatherButton.addEventListener("click",function(){
-        const city=cityInput.value;
-        if(city.trim()===""){
-            alert("please enter a city name");
+const input = document.getElementById('input');
+const btn = document.getElementById('btn');
+const output = document.getElementById('output');
+const api = "b1693ed7ad181ad79817cc99d0523aa3";
+btn.addEventListener('click',()=>{
+    const city = input.value;
+    if(city.trim()==="")
+    {
+        alert("Please enter some city name");
         return;
-       }
-const apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-fetch(apiUrl)
-.then(response=>{
-    if(!response.ok){
-        throw new error("weather not found");
     }
-    return response.json();
-    });
-.then(data=>{
-    const temperature=data.main.temp;
-    const weatherDescription=data.weather[0].description;
-    const weatherOutput=`
-    <p> Temperature:${temperature} &#8451;</p>
-    <p> WeatherDescription:${weatherDescription}</p>`;
-    weatherResult.innerHTML=weatherOutput;
+    url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=metric`
+    fetch(url)
+        .then(response=>response.json())
+        .then(data =>{
+            const temp = data.main.temp;
+            const description = data.weather[0].description;
+            const outputscreen = `<p>The temperature is ${temp}</p>
+                                  <p>The description is ${description}</p>`
+            output.innerHTML=outputscreen;
+        })
+        .catch(error=>
+        {
+            alert("No city exists",error);
+        })
 })
-.catch(error=>{
-console.error("error while fetcjing weather data",err);
-weatherResult.innerHTML="weather data not found";
-
-
-
-});
-});
-});
